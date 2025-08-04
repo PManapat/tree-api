@@ -27,6 +27,7 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 - git clone https://github.com/Pmanapat/tree-api.git
 - cd tree-api
 - npm i
+- npx prisma generate
 
 2. Set up .env
 DATABASE_URL=

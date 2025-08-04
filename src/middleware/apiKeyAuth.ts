@@ -1,7 +1,7 @@
 import prisma from '../utils/prisma';
 import http from 'http';
 
-export const validateApiKey = async (req: http.IncomingMessage): Promise<boolean> => {
+export const validateApiKey = async (req: http.IncomingMessage) => {
     const rawKey = req.headers['x-api-key'];
     const key = Array.isArray(rawKey) ? rawKey[0] : rawKey;
 
@@ -13,7 +13,7 @@ export const validateApiKey = async (req: http.IncomingMessage): Promise<boolean
         return true;
     }
     // future implementation - check the db for the apiKey and use bcrypt for encryption
-     const exists = await prisma.apiKey.findUnique({ where: { key } });{
-        return !!exists;
-    }
+    //  const exists = await prisma.apiKey.findUnique({ where: { key } });{
+    //     return !!exists;
+    // }
 };

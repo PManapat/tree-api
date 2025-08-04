@@ -17,6 +17,6 @@
     "dev": "ts-node src/server.ts",
     "test": "jest --passWithNoTests",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node src/server.js"
   }
 }
