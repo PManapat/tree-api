@@ -55,31 +55,3 @@ export const postTree = async (req: IncomingMessage, res: ServerResponse) => {
     return sendJson(res, 500, "Server error");
   }
 };
-
-export const resetTestTree = async (_req: IncomingMessage, res: ServerResponse) => {
-  try {
-    await prisma.$executeRawUnsafe(`TRUNCATE TABLE "TreeNode" RESTART IDENTITY CASCADE`);
-
-    // Insert root with id = 1
-    await prisma.$executeRawUnsafe(`
-      INSERT INTO "TreeNode" (id, label, "parentId", "createdAt")
-      VALUES (1, 'root', NULL, NOW())
-    `);
-
-    // Insert child with id = 2
-    await prisma.$executeRawUnsafe(`
-      INSERT INTO "TreeNode" (id, label, "parentId", "createdAt")
-      VALUES (2, 'elephant', 1, NOW())
-    `);
-
-    // Fetch to return in response
-    const root = await prisma.treeNode.findUnique({ where: { id: 1 }, include: { children: true } });
-    const child = await prisma.treeNode.findUnique({ where: { id: 2 } });
-
-    return sendJson(res, 200, 'Test data reset', { root, child });
-  } catch (err) {
-    console.error('Error in resetTestTree:', err);
-    return sendJson(res, 500, 'Failed to reset test data');
-  }
-};
-
