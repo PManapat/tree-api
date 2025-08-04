@@ -15,8 +15,8 @@
   },
   "scripts": {
     "dev": "ts-node src/server.ts",
-    "test": "jest --passWithNoTests",
     "build": "tsc",
-    "start": "node src/server.js"
+    "start": "node dist/server.js",
+    "postinstall": "prisma generate"
   }
 }
