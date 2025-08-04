@@ -36,23 +36,30 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 - npm i
 - npx prisma generate
 
-2. Set up .env - Can use your own postgreSQL db
-- DATABASE_URL=
+2. Create a local PostgreSQL database
+- default postgres user with no password
+    - createdb tree_api
+
+3. Set up .env - Can use your own postgreSQL db
+- DATABASE_URL= postgresql://localhost:5432/tree_api
 - API_KEY=123snhai
 
-3. Push Prisma schema
+4. Push Prisma schema
 - npx prisma db push
 - npx prisma db push
 
-4. Start the server
+5. Start the server
 - npm run dev
+
+6. *Must Run jest testing to create root node* (More details on edge cases at end of README)
+- npm run test
 
 ## Authentication
 Include your API key in all requests:
-- header: x-api-key: 123snhai
+- header: x-api-key:123snhai
 
 ## End Points
-Returns the full tree structure, nested from rot nodes to their children recursively
+Returns the full tree structure, nested from root nodes to their children recursively
 
 Response: 200
 
