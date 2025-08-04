@@ -18,9 +18,16 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 - PostgreSQL
 - Prisma ORM
 - Jest for testing
+- Render (Deployment for server and database)
 
 ---
- 
+## Test Deployed APIs on Render
+
+- uri: https://tree-api-et5g.onrender.com
+    - Endpoints are listed below
+
+---
+
 ## Getting Started
 
 1. Clone the repo
@@ -29,19 +36,73 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 - npm i
 - npx prisma generate
 
-2. Set up .env
-DATABASE_URL=
-API_KEY=
+2. Set up .env - Can use your own postgreSQL db
+- DATABASE_URL=(provided in email)
+- API_KEY=(provided in email)
 
 3. Push Prisma schema
-npx prisma db push
+- npx prisma db push
+- npx prisma db push
 
 4. Start the server
-npm run dev
+- npm run dev
 
 ## Authentication
 Include your API key in all requests:
-x-api-key: your_api_key_here
+- header: x-api-key: your_api_key_here
+
+## End Points
+Returns the full tree structure, nested from rot nodes to their children recursively
+
+Response: 200
+
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "label": "root",
+      "parentId": null,
+      "createdAt": "2025-08-03T00:00:00.000Z",
+      "children": [
+        {
+          "id": 2,
+          "label": "child1",
+          "parentId": 1,
+          "children": [...]
+        }
+      ]
+    }
+  ]
+}
+
+## POST /api/tree
+Creates a new node in the tree
+
+Request Body:
+{
+  "label": "child1",
+  "parentId": 1
+}
+
+label: string – Required
+parentId: number | null – Optional. Use null to attempt to create a root node (discouraged in production; root typically seeded once).
+
+Response: 
+200 Created on success
+409 Conflict if duplicate label under the same parent
+400 Bad request if label is missing or parentId is invalid
+
+{
+  "status": 201,
+  "message": "Node created successfully",
+  "data": {
+    "id": 3,
+    "label": "child1",
+    "parentId": 1
+  }
+}
 
 ## Run Tests
 npm test
