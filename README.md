@@ -20,15 +20,13 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 - Jest for testing
 
 ---
-
+ 
 ## Getting Started
 
 1. Clone the repo
-
-bash
-git clone https://github.com/Pmanapat/tree-api.git
-cd tree-api
-npm i
+- git clone https://github.com/Pmanapat/tree-api.git
+- cd tree-api
+- npm i
 
 2. Set up .env
 DATABASE_URL=
@@ -47,15 +45,15 @@ x-api-key: your_api_key_here
 ## Run Tests
 npm test
 
-### POST /api/tree
-Test cases:
-Should create a valid child node under the root
-Should fail to create a node with an invalid parentId
-Should fail to create a root node manually (only one root allowed)
-Should not allow duplicate labels under the same parent
-Should allow same label under different parents
-Reset and reinsert root + elephant via SQL (used for setup/test)
+### Test Cases:
+POST /api/tree
+- Should create a valid child node under the root
+- Should fail to create a node with an invalid parentId
+- Should fail to create a root node manually (only one root allowed)
+- Should not allow duplicate labels under the same parent
+- Should allow same label under different parents
+- Reset and reinsert root + elephant via SQL (used for setup/test)
 
-### GET /api/tree
-Should return a nested tree with root and children
-Should return an empty array if no nodes exist
+##### GET /api/tree
+- Should return a nested tree with root and children
+- Should return an empty array if no nodes exist
