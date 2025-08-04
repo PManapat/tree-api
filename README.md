@@ -37,8 +37,8 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 - npx prisma generate
 
 2. Set up .env - Can use your own postgreSQL db
-- DATABASE_URL=(provided in email)
-- API_KEY=(provided in email)
+- DATABASE_URL=
+- API_KEY=123snhai
 
 3. Push Prisma schema
 - npx prisma db push
@@ -49,7 +49,7 @@ A RESTful API for managing a hierarchical tree structure built with TypeScript, 
 
 ## Authentication
 Include your API key in all requests:
-- header: x-api-key: your_api_key_here
+- header: x-api-key: 123snhai
 
 ## End Points
 Returns the full tree structure, nested from rot nodes to their children recursively
